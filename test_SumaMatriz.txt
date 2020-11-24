@@ -1,0 +1,67 @@
+/* Mostrar un programa (escrito a mano o con un editor de texto) codificado en su lenguaje que defina dos matrices de tamaño 10x10, 
+lea las dimensiones con que se utilizarán en una corrida, verifique si es posible sumarlas, en caso contrario pida de nuevo las dimensiones. 
+Cuando las dimensiones sean correctas, lea los elementos de las dos matrices, las sume e imprima el resultado, elemento por elemento. 
+El programa debe utilizar al menos dos subrutinas. Utilice todos los elementos de su lenguaje para codificar este programa. */
+
+
+package:
+
+var a, b as matrix[10][10]
+
+var am, an, bm, bn, i, j, aux_sum as int
+
+
+module validar_dimensiones:
+    rout("Ingrese las dimensiones de a")
+    rin(am)
+    rin(an)
+    rout("ingrese las dimensioens de b")
+    rin(bm)
+    rin(bn)
+
+    while (am!=bm or an!=bn):
+
+        rout("Introduzca nuevamente las dimensiones, deben ser iguales")
+
+        rout("Ingrese las dimensiones de a")
+        rin(am)
+        rin(an)
+        rout("ingrese las dimensioens de b")
+        rin(bm)
+        rin(bn)
+    endw
+endm
+
+module llenar_matrices:
+    i<-0
+    j<-0
+    for i in 10:
+        for j in 10:
+            rin(a[i][j])
+            rin(b[i][j])
+        endfor
+    endfor
+endm
+
+module sumar_matrices:
+    i<-0
+    j<-0
+    for i in 10:
+    rout(/n)
+        for j in 10:
+            aux_sum <- a[i][j] + b[i][j]
+            rout(aux_sum)
+        endfor
+    endfor
+endm
+
+
+main()
+
+    rgosub validar_dimensiones
+    rgosub llenar_matrices
+    rgosub sumar_matrices
+
+end
+
+
