@@ -229,7 +229,7 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-f = open("test_SumaMatriz.txt", "r")
+f = open("codes/test_SumaMatriz.txt", "r")
 parser.parse(f.read())
 
 #Print symbol table
