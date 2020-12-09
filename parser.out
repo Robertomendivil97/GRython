@@ -1,0 +1,2099 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DOT
+    AND
+    newline
+    OR
+    COMMENT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PACKAGE COLON V MAINP P B END
+Rule 2     MAINP -> empty
+Rule 3     V -> V VAR VM AS TIPO
+Rule 4     V -> empty
+Rule 5     VM -> ID VM2
+Rule 6     VM2 -> COMMA ID VM2
+Rule 7     VM -> ID SQBL NUMBER SQBR VM2
+Rule 8     VM2 -> COMMA ID SQBL NUMBER SQBR VM2
+Rule 9     VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+Rule 10    VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+Rule 11    VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+Rule 12    VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+Rule 13    VM2 -> empty
+Rule 14    TIPO -> FLOAT
+Rule 15    TIPO -> INT
+Rule 16    TIPO -> ARRAY_INT
+Rule 17    TIPO -> ARRAY_FLOAT
+Rule 18    TIPO -> MATRIX_INT
+Rule 19    TIPO -> MATRIX_FLOAT
+Rule 20    TIPO -> CUBE_INT
+Rule 21    TIPO -> CUBE_FLOAT
+Rule 22    TIPO -> BOOL
+Rule 23    P -> P AUXPOSP MODULE ID COLON ST ENDM
+Rule 24    P -> empty
+Rule 25    AUXPOSP -> empty
+Rule 26    B -> MAIN PARL PARR ST
+Rule 27    ST -> S ST
+Rule 28    ST -> empty
+Rule 29    S -> ROUT PARL SID PARR
+Rule 30    S -> RIN PARL IID PARR
+Rule 31    S -> IF CONDITION COLON ST ENDIF
+Rule 32    S -> IF CONDITION COLON ST ELSE COLON ST ENDIF
+Rule 33    S -> FOR ID IN ID COLON ST ENDFOR
+Rule 34    S -> VMC ASSIGN UPDATE
+Rule 35    S -> WHILE CONDITION COLON ST ENDW
+Rule 36    S -> DO COLON ST DWHILE COLON CONDITION ENDDO
+Rule 37    S -> RGOSUB ID
+Rule 38    SID -> STRING SID2
+Rule 39    SID -> VMC SID2
+Rule 40    SID2 -> PLUS VMC SID2
+Rule 41    SID2 -> PLUS STRING SID2
+Rule 42    SID2 -> empty
+Rule 43    IID -> VMC IID2
+Rule 44    IID2 -> COMMA VMC IID2
+Rule 45    IID2 -> empty
+Rule 46    CONDITION -> CMP COMPARATOR CMP
+Rule 47    CMP -> NUMBER
+Rule 48    CMP -> ID
+Rule 49    COMPARATOR -> NE
+Rule 50    COMPARATOR -> GT
+Rule 51    COMPARATOR -> LT
+Rule 52    COMPARATOR -> EQ
+Rule 53    VMC -> ID
+Rule 54    VMC -> ID SQBL CMP SQBR SQBL CMP SQBR
+Rule 55    VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+Rule 56    UPDATE -> VMC UPDATE
+Rule 57    UPDATE -> NUMBER OPERATOR UPDATE
+Rule 58    UPDATE -> VMC
+Rule 59    UPDATE -> NUMBER
+Rule 60    OPERATOR -> PLUS
+Rule 61    OPERATOR -> MINUS
+Rule 62    OPERATOR -> TIMES
+Rule 63    OPERATOR -> DIVIDE
+Rule 64    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 
+ARRAY_FLOAT          : 17
+ARRAY_INT            : 16
+AS                   : 3
+ASSIGN               : 34
+BOOL                 : 22
+COLON                : 1 23 31 32 32 33 35 36 36
+COMMA                : 6 8 10 12 44
+COMMENT              : 
+CUBE_FLOAT           : 21
+CUBE_INT             : 20
+DIVIDE               : 63
+DO                   : 36
+DOT                  : 
+DWHILE               : 36
+ELSE                 : 32
+END                  : 1
+ENDDO                : 36
+ENDFOR               : 33
+ENDIF                : 31 32
+ENDM                 : 23
+ENDW                 : 35
+EQ                   : 52
+FLOAT                : 14
+FOR                  : 33
+GT                   : 50
+ID                   : 5 6 7 8 9 10 11 12 23 33 33 37 48 53 54 55
+IF                   : 31 32
+IN                   : 33
+INT                  : 15
+LT                   : 51
+MAIN                 : 26
+MATRIX_FLOAT         : 19
+MATRIX_INT           : 18
+MINUS                : 61
+MODULE               : 23
+NE                   : 49
+NUMBER               : 7 8 9 9 10 10 11 11 11 12 12 12 47 57 59
+OR                   : 
+PACKAGE              : 1
+PARL                 : 26 29 30
+PARR                 : 26 29 30
+PLUS                 : 40 41 60
+RGOSUB               : 37
+RIN                  : 30
+ROUT                 : 29
+SQBL                 : 7 8 9 9 10 10 11 11 11 12 12 12 54 54 55 55 55
+SQBR                 : 7 8 9 9 10 10 11 11 11 11 12 12 12 12 54 54 55 55 55
+STRING               : 38 41
+TIMES                : 62
+VAR                  : 3
+WHILE                : 35
+error                : 
+newline              : 
+
+Nonterminals, with rules where they appear
+
+AUXPOSP              : 23
+B                    : 1
+CMP                  : 46 46 54 54 55 55 55
+COMPARATOR           : 46
+CONDITION            : 31 32 35 36
+IID                  : 30
+IID2                 : 43 44
+MAINP                : 1
+OPERATOR             : 57
+P                    : 1 23
+S                    : 27
+SID                  : 29
+SID2                 : 38 39 40 41
+ST                   : 23 26 27 31 32 32 33 35 36
+TIPO                 : 3
+UPDATE               : 34 56 57
+V                    : 1 3
+VM                   : 3
+VM2                  : 5 6 7 8 9 10 11 12
+VMC                  : 34 39 40 43 44 56 58
+empty                : 2 4 13 24 25 28 42 45
+program              : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PACKAGE COLON V MAINP P B END
+
+    PACKAGE         shift and go to state 1
+
+    program                        shift and go to state 2
+
+state 1
+
+    (1) program -> PACKAGE . COLON V MAINP P B END
+
+    COLON           shift and go to state 3
+
+
+state 2
+
+    (0) S' -> program .
+
+
+
+state 3
+
+    (1) program -> PACKAGE COLON . V MAINP P B END
+    (3) V -> . V VAR VM AS TIPO
+    (4) V -> . empty
+    (64) empty -> .
+
+    VAR             reduce using rule 64 (empty -> .)
+    MAIN            reduce using rule 64 (empty -> .)
+    MODULE          reduce using rule 64 (empty -> .)
+
+    V                              shift and go to state 4
+    empty                          shift and go to state 5
+
+state 4
+
+    (1) program -> PACKAGE COLON V . MAINP P B END
+    (3) V -> V . VAR VM AS TIPO
+    (2) MAINP -> . empty
+    (64) empty -> .
+
+    VAR             shift and go to state 6
+    MAIN            reduce using rule 64 (empty -> .)
+    MODULE          reduce using rule 64 (empty -> .)
+
+    MAINP                          shift and go to state 8
+    empty                          shift and go to state 7
+
+state 5
+
+    (4) V -> empty .
+
+    VAR             reduce using rule 4 (V -> empty .)
+    MAIN            reduce using rule 4 (V -> empty .)
+    MODULE          reduce using rule 4 (V -> empty .)
+
+
+state 6
+
+    (3) V -> V VAR . VM AS TIPO
+    (5) VM -> . ID VM2
+    (7) VM -> . ID SQBL NUMBER SQBR VM2
+    (9) VM -> . ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (11) VM -> . ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    ID              shift and go to state 10
+
+    VM                             shift and go to state 9
+
+state 7
+
+    (2) MAINP -> empty .
+
+    MAIN            reduce using rule 2 (MAINP -> empty .)
+    MODULE          reduce using rule 2 (MAINP -> empty .)
+
+
+state 8
+
+    (1) program -> PACKAGE COLON V MAINP . P B END
+    (23) P -> . P AUXPOSP MODULE ID COLON ST ENDM
+    (24) P -> . empty
+    (64) empty -> .
+
+    MAIN            reduce using rule 64 (empty -> .)
+    MODULE          reduce using rule 64 (empty -> .)
+
+    P                              shift and go to state 11
+    empty                          shift and go to state 12
+
+state 9
+
+    (3) V -> V VAR VM . AS TIPO
+
+    AS              shift and go to state 13
+
+
+state 10
+
+    (5) VM -> ID . VM2
+    (7) VM -> ID . SQBL NUMBER SQBR VM2
+    (9) VM -> ID . SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (11) VM -> ID . SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    SQBL            shift and go to state 16
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 15
+    empty                          shift and go to state 17
+
+state 11
+
+    (1) program -> PACKAGE COLON V MAINP P . B END
+    (23) P -> P . AUXPOSP MODULE ID COLON ST ENDM
+    (26) B -> . MAIN PARL PARR ST
+    (25) AUXPOSP -> . empty
+    (64) empty -> .
+
+    MAIN            shift and go to state 20
+    MODULE          reduce using rule 64 (empty -> .)
+
+    empty                          shift and go to state 18
+    B                              shift and go to state 21
+    AUXPOSP                        shift and go to state 19
+
+state 12
+
+    (24) P -> empty .
+
+    MAIN            reduce using rule 24 (P -> empty .)
+    MODULE          reduce using rule 24 (P -> empty .)
+
+
+state 13
+
+    (3) V -> V VAR VM AS . TIPO
+    (14) TIPO -> . FLOAT
+    (15) TIPO -> . INT
+    (16) TIPO -> . ARRAY_INT
+    (17) TIPO -> . ARRAY_FLOAT
+    (18) TIPO -> . MATRIX_INT
+    (19) TIPO -> . MATRIX_FLOAT
+    (20) TIPO -> . CUBE_INT
+    (21) TIPO -> . CUBE_FLOAT
+    (22) TIPO -> . BOOL
+
+    FLOAT           shift and go to state 27
+    INT             shift and go to state 29
+    ARRAY_INT       shift and go to state 26
+    ARRAY_FLOAT     shift and go to state 22
+    MATRIX_INT      shift and go to state 31
+    MATRIX_FLOAT    shift and go to state 30
+    CUBE_INT        shift and go to state 23
+    CUBE_FLOAT      shift and go to state 28
+    BOOL            shift and go to state 24
+
+    TIPO                           shift and go to state 25
+
+state 14
+
+    (6) VM2 -> COMMA . ID VM2
+    (8) VM2 -> COMMA . ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> COMMA . ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> COMMA . ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    ID              shift and go to state 32
+
+
+state 15
+
+    (5) VM -> ID VM2 .
+
+    AS              reduce using rule 5 (VM -> ID VM2 .)
+
+
+state 16
+
+    (7) VM -> ID SQBL . NUMBER SQBR VM2
+    (9) VM -> ID SQBL . NUMBER SQBR SQBL NUMBER SQBR VM2
+    (11) VM -> ID SQBL . NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    NUMBER          shift and go to state 33
+
+
+state 17
+
+    (13) VM2 -> empty .
+
+    AS              reduce using rule 13 (VM2 -> empty .)
+
+
+state 18
+
+    (25) AUXPOSP -> empty .
+
+    MODULE          reduce using rule 25 (AUXPOSP -> empty .)
+
+
+state 19
+
+    (23) P -> P AUXPOSP . MODULE ID COLON ST ENDM
+
+    MODULE          shift and go to state 34
+
+
+state 20
+
+    (26) B -> MAIN . PARL PARR ST
+
+    PARL            shift and go to state 35
+
+
+state 21
+
+    (1) program -> PACKAGE COLON V MAINP P B . END
+
+    END             shift and go to state 36
+
+
+state 22
+
+    (17) TIPO -> ARRAY_FLOAT .
+
+    VAR             reduce using rule 17 (TIPO -> ARRAY_FLOAT .)
+    MAIN            reduce using rule 17 (TIPO -> ARRAY_FLOAT .)
+    MODULE          reduce using rule 17 (TIPO -> ARRAY_FLOAT .)
+
+
+state 23
+
+    (20) TIPO -> CUBE_INT .
+
+    VAR             reduce using rule 20 (TIPO -> CUBE_INT .)
+    MAIN            reduce using rule 20 (TIPO -> CUBE_INT .)
+    MODULE          reduce using rule 20 (TIPO -> CUBE_INT .)
+
+
+state 24
+
+    (22) TIPO -> BOOL .
+
+    VAR             reduce using rule 22 (TIPO -> BOOL .)
+    MAIN            reduce using rule 22 (TIPO -> BOOL .)
+    MODULE          reduce using rule 22 (TIPO -> BOOL .)
+
+
+state 25
+
+    (3) V -> V VAR VM AS TIPO .
+
+    VAR             reduce using rule 3 (V -> V VAR VM AS TIPO .)
+    MAIN            reduce using rule 3 (V -> V VAR VM AS TIPO .)
+    MODULE          reduce using rule 3 (V -> V VAR VM AS TIPO .)
+
+
+state 26
+
+    (16) TIPO -> ARRAY_INT .
+
+    VAR             reduce using rule 16 (TIPO -> ARRAY_INT .)
+    MAIN            reduce using rule 16 (TIPO -> ARRAY_INT .)
+    MODULE          reduce using rule 16 (TIPO -> ARRAY_INT .)
+
+
+state 27
+
+    (14) TIPO -> FLOAT .
+
+    VAR             reduce using rule 14 (TIPO -> FLOAT .)
+    MAIN            reduce using rule 14 (TIPO -> FLOAT .)
+    MODULE          reduce using rule 14 (TIPO -> FLOAT .)
+
+
+state 28
+
+    (21) TIPO -> CUBE_FLOAT .
+
+    VAR             reduce using rule 21 (TIPO -> CUBE_FLOAT .)
+    MAIN            reduce using rule 21 (TIPO -> CUBE_FLOAT .)
+    MODULE          reduce using rule 21 (TIPO -> CUBE_FLOAT .)
+
+
+state 29
+
+    (15) TIPO -> INT .
+
+    VAR             reduce using rule 15 (TIPO -> INT .)
+    MAIN            reduce using rule 15 (TIPO -> INT .)
+    MODULE          reduce using rule 15 (TIPO -> INT .)
+
+
+state 30
+
+    (19) TIPO -> MATRIX_FLOAT .
+
+    VAR             reduce using rule 19 (TIPO -> MATRIX_FLOAT .)
+    MAIN            reduce using rule 19 (TIPO -> MATRIX_FLOAT .)
+    MODULE          reduce using rule 19 (TIPO -> MATRIX_FLOAT .)
+
+
+state 31
+
+    (18) TIPO -> MATRIX_INT .
+
+    VAR             reduce using rule 18 (TIPO -> MATRIX_INT .)
+    MAIN            reduce using rule 18 (TIPO -> MATRIX_INT .)
+    MODULE          reduce using rule 18 (TIPO -> MATRIX_INT .)
+
+
+state 32
+
+    (6) VM2 -> COMMA ID . VM2
+    (8) VM2 -> COMMA ID . SQBL NUMBER SQBR VM2
+    (10) VM2 -> COMMA ID . SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> COMMA ID . SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    SQBL            shift and go to state 38
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 37
+    empty                          shift and go to state 17
+
+state 33
+
+    (7) VM -> ID SQBL NUMBER . SQBR VM2
+    (9) VM -> ID SQBL NUMBER . SQBR SQBL NUMBER SQBR VM2
+    (11) VM -> ID SQBL NUMBER . SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    SQBR            shift and go to state 39
+
+
+state 34
+
+    (23) P -> P AUXPOSP MODULE . ID COLON ST ENDM
+
+    ID              shift and go to state 40
+
+
+state 35
+
+    (26) B -> MAIN PARL . PARR ST
+
+    PARR            shift and go to state 41
+
+
+state 36
+
+    (1) program -> PACKAGE COLON V MAINP P B END .
+
+    $end            reduce using rule 1 (program -> PACKAGE COLON V MAINP P B END .)
+
+
+state 37
+
+    (6) VM2 -> COMMA ID VM2 .
+
+    AS              reduce using rule 6 (VM2 -> COMMA ID VM2 .)
+
+
+state 38
+
+    (8) VM2 -> COMMA ID SQBL . NUMBER SQBR VM2
+    (10) VM2 -> COMMA ID SQBL . NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> COMMA ID SQBL . NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    NUMBER          shift and go to state 42
+
+
+state 39
+
+    (7) VM -> ID SQBL NUMBER SQBR . VM2
+    (9) VM -> ID SQBL NUMBER SQBR . SQBL NUMBER SQBR VM2
+    (11) VM -> ID SQBL NUMBER SQBR . SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    SQBL            shift and go to state 44
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 43
+    empty                          shift and go to state 17
+
+state 40
+
+    (23) P -> P AUXPOSP MODULE ID . COLON ST ENDM
+
+    COLON           shift and go to state 45
+
+
+state 41
+
+    (26) B -> MAIN PARL PARR . ST
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    END             reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    ST                             shift and go to state 46
+    S                              shift and go to state 52
+    empty                          shift and go to state 49
+
+state 42
+
+    (8) VM2 -> COMMA ID SQBL NUMBER . SQBR VM2
+    (10) VM2 -> COMMA ID SQBL NUMBER . SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> COMMA ID SQBL NUMBER . SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    SQBR            shift and go to state 58
+
+
+state 43
+
+    (7) VM -> ID SQBL NUMBER SQBR VM2 .
+
+    AS              reduce using rule 7 (VM -> ID SQBL NUMBER SQBR VM2 .)
+
+
+state 44
+
+    (9) VM -> ID SQBL NUMBER SQBR SQBL . NUMBER SQBR VM2
+    (11) VM -> ID SQBL NUMBER SQBR SQBL . NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    NUMBER          shift and go to state 59
+
+
+state 45
+
+    (23) P -> P AUXPOSP MODULE ID COLON . ST ENDM
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    ENDM            reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    S                              shift and go to state 52
+    ST                             shift and go to state 60
+    empty                          shift and go to state 49
+
+state 46
+
+    (26) B -> MAIN PARL PARR ST .
+
+    END             reduce using rule 26 (B -> MAIN PARL PARR ST .)
+
+
+state 47
+
+    (35) S -> WHILE . CONDITION COLON ST ENDW
+    (46) CONDITION -> . CMP COMPARATOR CMP
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 63
+    CONDITION                      shift and go to state 62
+
+state 48
+
+    (36) S -> DO . COLON ST DWHILE COLON CONDITION ENDDO
+
+    COLON           shift and go to state 65
+
+
+state 49
+
+    (28) ST -> empty .
+
+    END             reduce using rule 28 (ST -> empty .)
+    DWHILE          reduce using rule 28 (ST -> empty .)
+    ENDIF           reduce using rule 28 (ST -> empty .)
+    ELSE            reduce using rule 28 (ST -> empty .)
+    ENDFOR          reduce using rule 28 (ST -> empty .)
+    ENDM            reduce using rule 28 (ST -> empty .)
+    ENDW            reduce using rule 28 (ST -> empty .)
+
+
+state 50
+
+    (33) S -> FOR . ID IN ID COLON ST ENDFOR
+
+    ID              shift and go to state 66
+
+
+state 51
+
+    (30) S -> RIN . PARL IID PARR
+
+    PARL            shift and go to state 67
+
+
+state 52
+
+    (27) ST -> S . ST
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    END             reduce using rule 64 (empty -> .)
+    ENDM            reduce using rule 64 (empty -> .)
+    DWHILE          reduce using rule 64 (empty -> .)
+    ENDW            reduce using rule 64 (empty -> .)
+    ENDIF           reduce using rule 64 (empty -> .)
+    ELSE            reduce using rule 64 (empty -> .)
+    ENDFOR          reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    ST                             shift and go to state 68
+    S                              shift and go to state 52
+    empty                          shift and go to state 49
+
+state 53
+
+    (37) S -> RGOSUB . ID
+
+    ID              shift and go to state 69
+
+
+state 54
+
+    (29) S -> ROUT . PARL SID PARR
+
+    PARL            shift and go to state 70
+
+
+state 55
+
+    (34) S -> VMC . ASSIGN UPDATE
+
+    ASSIGN          shift and go to state 71
+
+
+state 56
+
+    (31) S -> IF . CONDITION COLON ST ENDIF
+    (32) S -> IF . CONDITION COLON ST ELSE COLON ST ENDIF
+    (46) CONDITION -> . CMP COMPARATOR CMP
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 63
+    CONDITION                      shift and go to state 72
+
+state 57
+
+    (53) VMC -> ID .
+    (54) VMC -> ID . SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> ID . SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    NUMBER          reduce using rule 53 (VMC -> ID .)
+    ID              reduce using rule 53 (VMC -> ID .)
+    ROUT            reduce using rule 53 (VMC -> ID .)
+    RIN             reduce using rule 53 (VMC -> ID .)
+    IF              reduce using rule 53 (VMC -> ID .)
+    FOR             reduce using rule 53 (VMC -> ID .)
+    WHILE           reduce using rule 53 (VMC -> ID .)
+    DO              reduce using rule 53 (VMC -> ID .)
+    RGOSUB          reduce using rule 53 (VMC -> ID .)
+    END             reduce using rule 53 (VMC -> ID .)
+    ENDM            reduce using rule 53 (VMC -> ID .)
+    DWHILE          reduce using rule 53 (VMC -> ID .)
+    ENDW            reduce using rule 53 (VMC -> ID .)
+    ENDIF           reduce using rule 53 (VMC -> ID .)
+    ELSE            reduce using rule 53 (VMC -> ID .)
+    ENDFOR          reduce using rule 53 (VMC -> ID .)
+    ASSIGN          reduce using rule 53 (VMC -> ID .)
+    PLUS            reduce using rule 53 (VMC -> ID .)
+    PARR            reduce using rule 53 (VMC -> ID .)
+    COMMA           reduce using rule 53 (VMC -> ID .)
+    SQBL            shift and go to state 73
+
+
+state 58
+
+    (8) VM2 -> COMMA ID SQBL NUMBER SQBR . VM2
+    (10) VM2 -> COMMA ID SQBL NUMBER SQBR . SQBL NUMBER SQBR VM2
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR . SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    SQBL            shift and go to state 75
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 74
+    empty                          shift and go to state 17
+
+state 59
+
+    (9) VM -> ID SQBL NUMBER SQBR SQBL NUMBER . SQBR VM2
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER . SQBR SQBR SQBL NUMBER SQBR VM2
+
+    SQBR            shift and go to state 76
+
+
+state 60
+
+    (23) P -> P AUXPOSP MODULE ID COLON ST . ENDM
+
+    ENDM            shift and go to state 77
+
+
+state 61
+
+    (48) CMP -> ID .
+
+    SQBR            reduce using rule 48 (CMP -> ID .)
+    NE              reduce using rule 48 (CMP -> ID .)
+    GT              reduce using rule 48 (CMP -> ID .)
+    LT              reduce using rule 48 (CMP -> ID .)
+    EQ              reduce using rule 48 (CMP -> ID .)
+    COLON           reduce using rule 48 (CMP -> ID .)
+    ENDDO           reduce using rule 48 (CMP -> ID .)
+
+
+state 62
+
+    (35) S -> WHILE CONDITION . COLON ST ENDW
+
+    COLON           shift and go to state 78
+
+
+state 63
+
+    (46) CONDITION -> CMP . COMPARATOR CMP
+    (49) COMPARATOR -> . NE
+    (50) COMPARATOR -> . GT
+    (51) COMPARATOR -> . LT
+    (52) COMPARATOR -> . EQ
+
+    NE              shift and go to state 83
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    EQ              shift and go to state 82
+
+    COMPARATOR                     shift and go to state 79
+
+state 64
+
+    (47) CMP -> NUMBER .
+
+    SQBR            reduce using rule 47 (CMP -> NUMBER .)
+    NE              reduce using rule 47 (CMP -> NUMBER .)
+    GT              reduce using rule 47 (CMP -> NUMBER .)
+    LT              reduce using rule 47 (CMP -> NUMBER .)
+    EQ              reduce using rule 47 (CMP -> NUMBER .)
+    COLON           reduce using rule 47 (CMP -> NUMBER .)
+    ENDDO           reduce using rule 47 (CMP -> NUMBER .)
+
+
+state 65
+
+    (36) S -> DO COLON . ST DWHILE COLON CONDITION ENDDO
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    DWHILE          reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    S                              shift and go to state 52
+    ST                             shift and go to state 84
+    empty                          shift and go to state 49
+
+state 66
+
+    (33) S -> FOR ID . IN ID COLON ST ENDFOR
+
+    IN              shift and go to state 85
+
+
+state 67
+
+    (30) S -> RIN PARL . IID PARR
+    (43) IID -> . VMC IID2
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 86
+    IID                            shift and go to state 87
+
+state 68
+
+    (27) ST -> S ST .
+
+    END             reduce using rule 27 (ST -> S ST .)
+    DWHILE          reduce using rule 27 (ST -> S ST .)
+    ENDIF           reduce using rule 27 (ST -> S ST .)
+    ELSE            reduce using rule 27 (ST -> S ST .)
+    ENDFOR          reduce using rule 27 (ST -> S ST .)
+    ENDM            reduce using rule 27 (ST -> S ST .)
+    ENDW            reduce using rule 27 (ST -> S ST .)
+
+
+state 69
+
+    (37) S -> RGOSUB ID .
+
+    ROUT            reduce using rule 37 (S -> RGOSUB ID .)
+    RIN             reduce using rule 37 (S -> RGOSUB ID .)
+    IF              reduce using rule 37 (S -> RGOSUB ID .)
+    FOR             reduce using rule 37 (S -> RGOSUB ID .)
+    WHILE           reduce using rule 37 (S -> RGOSUB ID .)
+    DO              reduce using rule 37 (S -> RGOSUB ID .)
+    RGOSUB          reduce using rule 37 (S -> RGOSUB ID .)
+    ID              reduce using rule 37 (S -> RGOSUB ID .)
+    ENDW            reduce using rule 37 (S -> RGOSUB ID .)
+    END             reduce using rule 37 (S -> RGOSUB ID .)
+    ENDM            reduce using rule 37 (S -> RGOSUB ID .)
+    DWHILE          reduce using rule 37 (S -> RGOSUB ID .)
+    ENDIF           reduce using rule 37 (S -> RGOSUB ID .)
+    ELSE            reduce using rule 37 (S -> RGOSUB ID .)
+    ENDFOR          reduce using rule 37 (S -> RGOSUB ID .)
+
+
+state 70
+
+    (29) S -> ROUT PARL . SID PARR
+    (38) SID -> . STRING SID2
+    (39) SID -> . VMC SID2
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    STRING          shift and go to state 90
+    ID              shift and go to state 57
+
+    SID                            shift and go to state 88
+    VMC                            shift and go to state 89
+
+state 71
+
+    (34) S -> VMC ASSIGN . UPDATE
+    (56) UPDATE -> . VMC UPDATE
+    (57) UPDATE -> . NUMBER OPERATOR UPDATE
+    (58) UPDATE -> . VMC
+    (59) UPDATE -> . NUMBER
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    NUMBER          shift and go to state 93
+    ID              shift and go to state 57
+
+    UPDATE                         shift and go to state 91
+    VMC                            shift and go to state 92
+
+state 72
+
+    (31) S -> IF CONDITION . COLON ST ENDIF
+    (32) S -> IF CONDITION . COLON ST ELSE COLON ST ENDIF
+
+    COLON           shift and go to state 94
+
+
+state 73
+
+    (54) VMC -> ID SQBL . CMP SQBR SQBL CMP SQBR
+    (55) VMC -> ID SQBL . CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 95
+
+state 74
+
+    (8) VM2 -> COMMA ID SQBL NUMBER SQBR VM2 .
+
+    AS              reduce using rule 8 (VM2 -> COMMA ID SQBL NUMBER SQBR VM2 .)
+
+
+state 75
+
+    (10) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL . NUMBER SQBR VM2
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL . NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+
+    NUMBER          shift and go to state 96
+
+
+state 76
+
+    (9) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR . VM2
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR . SQBR SQBL NUMBER SQBR VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    SQBR            shift and go to state 98
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 97
+    empty                          shift and go to state 17
+
+state 77
+
+    (23) P -> P AUXPOSP MODULE ID COLON ST ENDM .
+
+    MAIN            reduce using rule 23 (P -> P AUXPOSP MODULE ID COLON ST ENDM .)
+    MODULE          reduce using rule 23 (P -> P AUXPOSP MODULE ID COLON ST ENDM .)
+
+
+state 78
+
+    (35) S -> WHILE CONDITION COLON . ST ENDW
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    ENDW            reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    S                              shift and go to state 52
+    ST                             shift and go to state 99
+    empty                          shift and go to state 49
+
+state 79
+
+    (46) CONDITION -> CMP COMPARATOR . CMP
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 100
+
+state 80
+
+    (50) COMPARATOR -> GT .
+
+    NUMBER          reduce using rule 50 (COMPARATOR -> GT .)
+    ID              reduce using rule 50 (COMPARATOR -> GT .)
+
+
+state 81
+
+    (51) COMPARATOR -> LT .
+
+    NUMBER          reduce using rule 51 (COMPARATOR -> LT .)
+    ID              reduce using rule 51 (COMPARATOR -> LT .)
+
+
+state 82
+
+    (52) COMPARATOR -> EQ .
+
+    NUMBER          reduce using rule 52 (COMPARATOR -> EQ .)
+    ID              reduce using rule 52 (COMPARATOR -> EQ .)
+
+
+state 83
+
+    (49) COMPARATOR -> NE .
+
+    NUMBER          reduce using rule 49 (COMPARATOR -> NE .)
+    ID              reduce using rule 49 (COMPARATOR -> NE .)
+
+
+state 84
+
+    (36) S -> DO COLON ST . DWHILE COLON CONDITION ENDDO
+
+    DWHILE          shift and go to state 101
+
+
+state 85
+
+    (33) S -> FOR ID IN . ID COLON ST ENDFOR
+
+    ID              shift and go to state 102
+
+
+state 86
+
+    (43) IID -> VMC . IID2
+    (44) IID2 -> . COMMA VMC IID2
+    (45) IID2 -> . empty
+    (64) empty -> .
+
+    COMMA           shift and go to state 103
+    PARR            reduce using rule 64 (empty -> .)
+
+    IID2                           shift and go to state 104
+    empty                          shift and go to state 105
+
+state 87
+
+    (30) S -> RIN PARL IID . PARR
+
+    PARR            shift and go to state 106
+
+
+state 88
+
+    (29) S -> ROUT PARL SID . PARR
+
+    PARR            shift and go to state 107
+
+
+state 89
+
+    (39) SID -> VMC . SID2
+    (40) SID2 -> . PLUS VMC SID2
+    (41) SID2 -> . PLUS STRING SID2
+    (42) SID2 -> . empty
+    (64) empty -> .
+
+    PLUS            shift and go to state 110
+    PARR            reduce using rule 64 (empty -> .)
+
+    SID2                           shift and go to state 108
+    empty                          shift and go to state 109
+
+state 90
+
+    (38) SID -> STRING . SID2
+    (40) SID2 -> . PLUS VMC SID2
+    (41) SID2 -> . PLUS STRING SID2
+    (42) SID2 -> . empty
+    (64) empty -> .
+
+    PLUS            shift and go to state 110
+    PARR            reduce using rule 64 (empty -> .)
+
+    SID2                           shift and go to state 111
+    empty                          shift and go to state 109
+
+state 91
+
+    (34) S -> VMC ASSIGN UPDATE .
+
+    ROUT            reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    RIN             reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    IF              reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    FOR             reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    WHILE           reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    DO              reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    RGOSUB          reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    ID              reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    ENDW            reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    END             reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    ENDM            reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    DWHILE          reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    ENDIF           reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    ELSE            reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+    ENDFOR          reduce using rule 34 (S -> VMC ASSIGN UPDATE .)
+
+
+state 92
+
+    (56) UPDATE -> VMC . UPDATE
+    (58) UPDATE -> VMC .
+    (56) UPDATE -> . VMC UPDATE
+    (57) UPDATE -> . NUMBER OPERATOR UPDATE
+    (58) UPDATE -> . VMC
+    (59) UPDATE -> . NUMBER
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+  ! shift/reduce conflict for ID resolved as shift
+    ROUT            reduce using rule 58 (UPDATE -> VMC .)
+    RIN             reduce using rule 58 (UPDATE -> VMC .)
+    IF              reduce using rule 58 (UPDATE -> VMC .)
+    FOR             reduce using rule 58 (UPDATE -> VMC .)
+    WHILE           reduce using rule 58 (UPDATE -> VMC .)
+    DO              reduce using rule 58 (UPDATE -> VMC .)
+    RGOSUB          reduce using rule 58 (UPDATE -> VMC .)
+    END             reduce using rule 58 (UPDATE -> VMC .)
+    ENDM            reduce using rule 58 (UPDATE -> VMC .)
+    DWHILE          reduce using rule 58 (UPDATE -> VMC .)
+    ENDW            reduce using rule 58 (UPDATE -> VMC .)
+    ENDIF           reduce using rule 58 (UPDATE -> VMC .)
+    ELSE            reduce using rule 58 (UPDATE -> VMC .)
+    ENDFOR          reduce using rule 58 (UPDATE -> VMC .)
+    NUMBER          shift and go to state 93
+    ID              shift and go to state 57
+
+  ! ID              [ reduce using rule 58 (UPDATE -> VMC .) ]
+
+    UPDATE                         shift and go to state 112
+    VMC                            shift and go to state 92
+
+state 93
+
+    (57) UPDATE -> NUMBER . OPERATOR UPDATE
+    (59) UPDATE -> NUMBER .
+    (60) OPERATOR -> . PLUS
+    (61) OPERATOR -> . MINUS
+    (62) OPERATOR -> . TIMES
+    (63) OPERATOR -> . DIVIDE
+
+    ROUT            reduce using rule 59 (UPDATE -> NUMBER .)
+    RIN             reduce using rule 59 (UPDATE -> NUMBER .)
+    IF              reduce using rule 59 (UPDATE -> NUMBER .)
+    FOR             reduce using rule 59 (UPDATE -> NUMBER .)
+    WHILE           reduce using rule 59 (UPDATE -> NUMBER .)
+    DO              reduce using rule 59 (UPDATE -> NUMBER .)
+    RGOSUB          reduce using rule 59 (UPDATE -> NUMBER .)
+    ID              reduce using rule 59 (UPDATE -> NUMBER .)
+    END             reduce using rule 59 (UPDATE -> NUMBER .)
+    ENDM            reduce using rule 59 (UPDATE -> NUMBER .)
+    DWHILE          reduce using rule 59 (UPDATE -> NUMBER .)
+    ENDW            reduce using rule 59 (UPDATE -> NUMBER .)
+    ENDIF           reduce using rule 59 (UPDATE -> NUMBER .)
+    ELSE            reduce using rule 59 (UPDATE -> NUMBER .)
+    ENDFOR          reduce using rule 59 (UPDATE -> NUMBER .)
+    PLUS            shift and go to state 115
+    MINUS           shift and go to state 117
+    TIMES           shift and go to state 116
+    DIVIDE          shift and go to state 113
+
+    OPERATOR                       shift and go to state 114
+
+state 94
+
+    (31) S -> IF CONDITION COLON . ST ENDIF
+    (32) S -> IF CONDITION COLON . ST ELSE COLON ST ENDIF
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    ENDIF           reduce using rule 64 (empty -> .)
+    ELSE            reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    S                              shift and go to state 52
+    ST                             shift and go to state 118
+    empty                          shift and go to state 49
+
+state 95
+
+    (54) VMC -> ID SQBL CMP . SQBR SQBL CMP SQBR
+    (55) VMC -> ID SQBL CMP . SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    SQBR            shift and go to state 119
+
+
+state 96
+
+    (10) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER . SQBR VM2
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER . SQBR SQBR SQBL NUMBER SQBR VM2
+
+    SQBR            shift and go to state 120
+
+
+state 97
+
+    (9) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2 .
+
+    AS              reduce using rule 9 (VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2 .)
+
+
+state 98
+
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR . SQBL NUMBER SQBR VM2
+
+    SQBL            shift and go to state 121
+
+
+state 99
+
+    (35) S -> WHILE CONDITION COLON ST . ENDW
+
+    ENDW            shift and go to state 122
+
+
+state 100
+
+    (46) CONDITION -> CMP COMPARATOR CMP .
+
+    ENDDO           reduce using rule 46 (CONDITION -> CMP COMPARATOR CMP .)
+    COLON           reduce using rule 46 (CONDITION -> CMP COMPARATOR CMP .)
+
+
+state 101
+
+    (36) S -> DO COLON ST DWHILE . COLON CONDITION ENDDO
+
+    COLON           shift and go to state 123
+
+
+state 102
+
+    (33) S -> FOR ID IN ID . COLON ST ENDFOR
+
+    COLON           shift and go to state 124
+
+
+state 103
+
+    (44) IID2 -> COMMA . VMC IID2
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 125
+
+state 104
+
+    (43) IID -> VMC IID2 .
+
+    PARR            reduce using rule 43 (IID -> VMC IID2 .)
+
+
+state 105
+
+    (45) IID2 -> empty .
+
+    PARR            reduce using rule 45 (IID2 -> empty .)
+
+
+state 106
+
+    (30) S -> RIN PARL IID PARR .
+
+    ROUT            reduce using rule 30 (S -> RIN PARL IID PARR .)
+    RIN             reduce using rule 30 (S -> RIN PARL IID PARR .)
+    IF              reduce using rule 30 (S -> RIN PARL IID PARR .)
+    FOR             reduce using rule 30 (S -> RIN PARL IID PARR .)
+    WHILE           reduce using rule 30 (S -> RIN PARL IID PARR .)
+    DO              reduce using rule 30 (S -> RIN PARL IID PARR .)
+    RGOSUB          reduce using rule 30 (S -> RIN PARL IID PARR .)
+    ID              reduce using rule 30 (S -> RIN PARL IID PARR .)
+    ENDW            reduce using rule 30 (S -> RIN PARL IID PARR .)
+    END             reduce using rule 30 (S -> RIN PARL IID PARR .)
+    ENDM            reduce using rule 30 (S -> RIN PARL IID PARR .)
+    DWHILE          reduce using rule 30 (S -> RIN PARL IID PARR .)
+    ENDIF           reduce using rule 30 (S -> RIN PARL IID PARR .)
+    ELSE            reduce using rule 30 (S -> RIN PARL IID PARR .)
+    ENDFOR          reduce using rule 30 (S -> RIN PARL IID PARR .)
+
+
+state 107
+
+    (29) S -> ROUT PARL SID PARR .
+
+    ROUT            reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    RIN             reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    IF              reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    FOR             reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    WHILE           reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    DO              reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    RGOSUB          reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    ID              reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    ENDW            reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    END             reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    ENDM            reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    DWHILE          reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    ENDIF           reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    ELSE            reduce using rule 29 (S -> ROUT PARL SID PARR .)
+    ENDFOR          reduce using rule 29 (S -> ROUT PARL SID PARR .)
+
+
+state 108
+
+    (39) SID -> VMC SID2 .
+
+    PARR            reduce using rule 39 (SID -> VMC SID2 .)
+
+
+state 109
+
+    (42) SID2 -> empty .
+
+    PARR            reduce using rule 42 (SID2 -> empty .)
+
+
+state 110
+
+    (40) SID2 -> PLUS . VMC SID2
+    (41) SID2 -> PLUS . STRING SID2
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    STRING          shift and go to state 127
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 126
+
+state 111
+
+    (38) SID -> STRING SID2 .
+
+    PARR            reduce using rule 38 (SID -> STRING SID2 .)
+
+
+state 112
+
+    (56) UPDATE -> VMC UPDATE .
+
+    ROUT            reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    RIN             reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    IF              reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    FOR             reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    WHILE           reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    DO              reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    RGOSUB          reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    ID              reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    END             reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    ENDM            reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    DWHILE          reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    ENDW            reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    ENDIF           reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    ELSE            reduce using rule 56 (UPDATE -> VMC UPDATE .)
+    ENDFOR          reduce using rule 56 (UPDATE -> VMC UPDATE .)
+
+
+state 113
+
+    (63) OPERATOR -> DIVIDE .
+
+    NUMBER          reduce using rule 63 (OPERATOR -> DIVIDE .)
+    ID              reduce using rule 63 (OPERATOR -> DIVIDE .)
+
+
+state 114
+
+    (57) UPDATE -> NUMBER OPERATOR . UPDATE
+    (56) UPDATE -> . VMC UPDATE
+    (57) UPDATE -> . NUMBER OPERATOR UPDATE
+    (58) UPDATE -> . VMC
+    (59) UPDATE -> . NUMBER
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    NUMBER          shift and go to state 93
+    ID              shift and go to state 57
+
+    UPDATE                         shift and go to state 128
+    VMC                            shift and go to state 92
+
+state 115
+
+    (60) OPERATOR -> PLUS .
+
+    NUMBER          reduce using rule 60 (OPERATOR -> PLUS .)
+    ID              reduce using rule 60 (OPERATOR -> PLUS .)
+
+
+state 116
+
+    (62) OPERATOR -> TIMES .
+
+    NUMBER          reduce using rule 62 (OPERATOR -> TIMES .)
+    ID              reduce using rule 62 (OPERATOR -> TIMES .)
+
+
+state 117
+
+    (61) OPERATOR -> MINUS .
+
+    NUMBER          reduce using rule 61 (OPERATOR -> MINUS .)
+    ID              reduce using rule 61 (OPERATOR -> MINUS .)
+
+
+state 118
+
+    (31) S -> IF CONDITION COLON ST . ENDIF
+    (32) S -> IF CONDITION COLON ST . ELSE COLON ST ENDIF
+
+    ENDIF           shift and go to state 129
+    ELSE            shift and go to state 130
+
+
+state 119
+
+    (54) VMC -> ID SQBL CMP SQBR . SQBL CMP SQBR
+    (55) VMC -> ID SQBL CMP SQBR . SQBL CMP SQBR SQBL CMP SQBR
+
+    SQBL            shift and go to state 131
+
+
+state 120
+
+    (10) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR . VM2
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR . SQBR SQBL NUMBER SQBR VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    SQBR            shift and go to state 133
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 132
+    empty                          shift and go to state 17
+
+state 121
+
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL . NUMBER SQBR VM2
+
+    NUMBER          shift and go to state 134
+
+
+state 122
+
+    (35) S -> WHILE CONDITION COLON ST ENDW .
+
+    ROUT            reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    RIN             reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    IF              reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    FOR             reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    WHILE           reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    DO              reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    RGOSUB          reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    ID              reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    ENDW            reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    END             reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    ENDM            reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    DWHILE          reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    ENDIF           reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    ELSE            reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+    ENDFOR          reduce using rule 35 (S -> WHILE CONDITION COLON ST ENDW .)
+
+
+state 123
+
+    (36) S -> DO COLON ST DWHILE COLON . CONDITION ENDDO
+    (46) CONDITION -> . CMP COMPARATOR CMP
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 63
+    CONDITION                      shift and go to state 135
+
+state 124
+
+    (33) S -> FOR ID IN ID COLON . ST ENDFOR
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    ENDFOR          reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    ST                             shift and go to state 136
+    S                              shift and go to state 52
+    empty                          shift and go to state 49
+
+state 125
+
+    (44) IID2 -> COMMA VMC . IID2
+    (44) IID2 -> . COMMA VMC IID2
+    (45) IID2 -> . empty
+    (64) empty -> .
+
+    COMMA           shift and go to state 103
+    PARR            reduce using rule 64 (empty -> .)
+
+    IID2                           shift and go to state 137
+    empty                          shift and go to state 105
+
+state 126
+
+    (40) SID2 -> PLUS VMC . SID2
+    (40) SID2 -> . PLUS VMC SID2
+    (41) SID2 -> . PLUS STRING SID2
+    (42) SID2 -> . empty
+    (64) empty -> .
+
+    PLUS            shift and go to state 110
+    PARR            reduce using rule 64 (empty -> .)
+
+    SID2                           shift and go to state 138
+    empty                          shift and go to state 109
+
+state 127
+
+    (41) SID2 -> PLUS STRING . SID2
+    (40) SID2 -> . PLUS VMC SID2
+    (41) SID2 -> . PLUS STRING SID2
+    (42) SID2 -> . empty
+    (64) empty -> .
+
+    PLUS            shift and go to state 110
+    PARR            reduce using rule 64 (empty -> .)
+
+    SID2                           shift and go to state 139
+    empty                          shift and go to state 109
+
+state 128
+
+    (57) UPDATE -> NUMBER OPERATOR UPDATE .
+
+    ROUT            reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    RIN             reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    IF              reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    FOR             reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    WHILE           reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    DO              reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    RGOSUB          reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    ID              reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    END             reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    ENDM            reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    DWHILE          reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    ENDW            reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    ENDIF           reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    ELSE            reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+    ENDFOR          reduce using rule 57 (UPDATE -> NUMBER OPERATOR UPDATE .)
+
+
+state 129
+
+    (31) S -> IF CONDITION COLON ST ENDIF .
+
+    ROUT            reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    RIN             reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    IF              reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    FOR             reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    WHILE           reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    DO              reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    RGOSUB          reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    ID              reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    ENDW            reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    END             reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    ENDM            reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    DWHILE          reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    ENDIF           reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    ELSE            reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+    ENDFOR          reduce using rule 31 (S -> IF CONDITION COLON ST ENDIF .)
+
+
+state 130
+
+    (32) S -> IF CONDITION COLON ST ELSE . COLON ST ENDIF
+
+    COLON           shift and go to state 140
+
+
+state 131
+
+    (54) VMC -> ID SQBL CMP SQBR SQBL . CMP SQBR
+    (55) VMC -> ID SQBL CMP SQBR SQBL . CMP SQBR SQBL CMP SQBR
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 141
+
+state 132
+
+    (10) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2 .
+
+    AS              reduce using rule 10 (VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2 .)
+
+
+state 133
+
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR . SQBL NUMBER SQBR VM2
+
+    SQBL            shift and go to state 142
+
+
+state 134
+
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER . SQBR VM2
+
+    SQBR            shift and go to state 143
+
+
+state 135
+
+    (36) S -> DO COLON ST DWHILE COLON CONDITION . ENDDO
+
+    ENDDO           shift and go to state 144
+
+
+state 136
+
+    (33) S -> FOR ID IN ID COLON ST . ENDFOR
+
+    ENDFOR          shift and go to state 145
+
+
+state 137
+
+    (44) IID2 -> COMMA VMC IID2 .
+
+    PARR            reduce using rule 44 (IID2 -> COMMA VMC IID2 .)
+
+
+state 138
+
+    (40) SID2 -> PLUS VMC SID2 .
+
+    PARR            reduce using rule 40 (SID2 -> PLUS VMC SID2 .)
+
+
+state 139
+
+    (41) SID2 -> PLUS STRING SID2 .
+
+    PARR            reduce using rule 41 (SID2 -> PLUS STRING SID2 .)
+
+
+state 140
+
+    (32) S -> IF CONDITION COLON ST ELSE COLON . ST ENDIF
+    (27) ST -> . S ST
+    (28) ST -> . empty
+    (29) S -> . ROUT PARL SID PARR
+    (30) S -> . RIN PARL IID PARR
+    (31) S -> . IF CONDITION COLON ST ENDIF
+    (32) S -> . IF CONDITION COLON ST ELSE COLON ST ENDIF
+    (33) S -> . FOR ID IN ID COLON ST ENDFOR
+    (34) S -> . VMC ASSIGN UPDATE
+    (35) S -> . WHILE CONDITION COLON ST ENDW
+    (36) S -> . DO COLON ST DWHILE COLON CONDITION ENDDO
+    (37) S -> . RGOSUB ID
+    (64) empty -> .
+    (53) VMC -> . ID
+    (54) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR
+    (55) VMC -> . ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR
+
+    ROUT            shift and go to state 54
+    RIN             shift and go to state 51
+    IF              shift and go to state 56
+    FOR             shift and go to state 50
+    WHILE           shift and go to state 47
+    DO              shift and go to state 48
+    RGOSUB          shift and go to state 53
+    ENDIF           reduce using rule 64 (empty -> .)
+    ID              shift and go to state 57
+
+    VMC                            shift and go to state 55
+    S                              shift and go to state 52
+    ST                             shift and go to state 146
+    empty                          shift and go to state 49
+
+state 141
+
+    (54) VMC -> ID SQBL CMP SQBR SQBL CMP . SQBR
+    (55) VMC -> ID SQBL CMP SQBR SQBL CMP . SQBR SQBL CMP SQBR
+
+    SQBR            shift and go to state 147
+
+
+state 142
+
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL . NUMBER SQBR VM2
+
+    NUMBER          shift and go to state 148
+
+
+state 143
+
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR . VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 149
+    empty                          shift and go to state 17
+
+state 144
+
+    (36) S -> DO COLON ST DWHILE COLON CONDITION ENDDO .
+
+    ROUT            reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    RIN             reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    IF              reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    FOR             reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    WHILE           reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    DO              reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    RGOSUB          reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    ID              reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    ENDW            reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    END             reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    ENDM            reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    DWHILE          reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    ENDIF           reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    ELSE            reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+    ENDFOR          reduce using rule 36 (S -> DO COLON ST DWHILE COLON CONDITION ENDDO .)
+
+
+state 145
+
+    (33) S -> FOR ID IN ID COLON ST ENDFOR .
+
+    ROUT            reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    RIN             reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    IF              reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    FOR             reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    WHILE           reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    DO              reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    RGOSUB          reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    ID              reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    ENDW            reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    END             reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    ENDM            reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    DWHILE          reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    ENDIF           reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    ELSE            reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+    ENDFOR          reduce using rule 33 (S -> FOR ID IN ID COLON ST ENDFOR .)
+
+
+state 146
+
+    (32) S -> IF CONDITION COLON ST ELSE COLON ST . ENDIF
+
+    ENDIF           shift and go to state 150
+
+
+state 147
+
+    (54) VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .
+    (55) VMC -> ID SQBL CMP SQBR SQBL CMP SQBR . SQBL CMP SQBR
+
+    NUMBER          reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ID              reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ROUT            reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    RIN             reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    IF              reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    FOR             reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    WHILE           reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    DO              reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    RGOSUB          reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    END             reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDM            reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    DWHILE          reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDW            reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDIF           reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ELSE            reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDFOR          reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    ASSIGN          reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    PLUS            reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    PARR            reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    COMMA           reduce using rule 54 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR .)
+    SQBL            shift and go to state 151
+
+
+state 148
+
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER . SQBR VM2
+
+    SQBR            shift and go to state 152
+
+
+state 149
+
+    (11) VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2 .
+
+    AS              reduce using rule 11 (VM -> ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2 .)
+
+
+state 150
+
+    (32) S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .
+
+    ROUT            reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    RIN             reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    IF              reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    FOR             reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    WHILE           reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    DO              reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    RGOSUB          reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    ID              reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    ENDW            reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    END             reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    ENDM            reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    DWHILE          reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    ENDIF           reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    ELSE            reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+    ENDFOR          reduce using rule 32 (S -> IF CONDITION COLON ST ELSE COLON ST ENDIF .)
+
+
+state 151
+
+    (55) VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL . CMP SQBR
+    (47) CMP -> . NUMBER
+    (48) CMP -> . ID
+
+    NUMBER          shift and go to state 64
+    ID              shift and go to state 61
+
+    CMP                            shift and go to state 153
+
+state 152
+
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR . VM2
+    (6) VM2 -> . COMMA ID VM2
+    (8) VM2 -> . COMMA ID SQBL NUMBER SQBR VM2
+    (10) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR VM2
+    (12) VM2 -> . COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2
+    (13) VM2 -> . empty
+    (64) empty -> .
+
+    COMMA           shift and go to state 14
+    AS              reduce using rule 64 (empty -> .)
+
+    VM2                            shift and go to state 154
+    empty                          shift and go to state 17
+
+state 153
+
+    (55) VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP . SQBR
+
+    SQBR            shift and go to state 155
+
+
+state 154
+
+    (12) VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2 .
+
+    AS              reduce using rule 12 (VM2 -> COMMA ID SQBL NUMBER SQBR SQBL NUMBER SQBR SQBR SQBL NUMBER SQBR VM2 .)
+
+
+state 155
+
+    (55) VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .
+
+    NUMBER          reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ID              reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ROUT            reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    RIN             reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    IF              reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    FOR             reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    WHILE           reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    DO              reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    RGOSUB          reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    END             reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDM            reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    DWHILE          reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDW            reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDIF           reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ELSE            reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ENDFOR          reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    ASSIGN          reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    PLUS            reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    PARR            reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+    COMMA           reduce using rule 55 (VMC -> ID SQBL CMP SQBR SQBL CMP SQBR SQBL CMP SQBR .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ID in state 92 resolved as shift
